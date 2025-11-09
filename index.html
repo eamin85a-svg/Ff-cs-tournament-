@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,41 +7,145 @@
 <title>FF CS Mini Tournament</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body { font-family:'Poppins',sans-serif; margin:0; padding:0; background:#0e0e0e; color:#fff; text-align:center;}
-h1,h2{margin:10px 0;}
-a{color:#00ffae;text-decoration:none;}
-.timer{font-size:20px;margin-top:5px;color:#00ffae;font-weight:bold;}
-.match-date{font-size:16px;margin-top:5px;color:#ccc;}
-table{width:95%;margin:15px auto;border-collapse:collapse;}
-th,td{border:1px solid #444;padding:10px;font-size:14px;}
-th{background-color:#00ffae;color:#000;}
-tr:nth-child(even){background-color:#1c1c1c;}
-tr:nth-child(odd){background-color:#2a2a2a;}
-.music-btn{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:#00ffae;border-radius:50%;border:none;font-size:24px;color:#000;cursor:pointer;display:flex;justify-content:center;align-items:center;z-index:1000;}
-.music-btn:hover{background:#00cc88;}
-.music-panel{display:none;position:fixed;bottom:90px;right:20px;background:#1a1a1a;padding:10px;border-radius:10px;box-shadow:0 0 10px #00ffae;z-index:1000;}
-.music-panel button{display:block;width:100%;padding:8px;margin:5px 0;background:#00ffae;border:none;color:#000;font-weight:bold;border-radius:5px;cursor:pointer;}
-.music-panel button:hover{background:#00cc88;}
-.creator{margin-top:30px;font-size:14px;color:#999;}
-.creator span{display:block;font-weight:bold;color:#00ffae;}
-footer{margin-top:20px;background:#111;padding:10px;font-size:14px;display:flex;flex-direction:column;align-items:center;}
-.contact-icons a{margin:0 10px;font-size:24px;color:#00ffae;}
-.contact-icons a:hover{color:#00cc88;}
-.popup-bg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;display:flex;}
-.popup{background:#1a1a1a;padding:20px;border-radius:10px;width:90%;max-width:350px;text-align:left;}
-.popup h3{color:#00ffae;margin-bottom:10px;}
-.popup a{display:block;margin:5px 0;color:#00ffae;}
-.popup button{margin-top:10px;padding:8px 12px;background:#00ffae;border:none;color:#000;font-weight:bold;cursor:pointer;border-radius:5px;}
-.popup button:hover{background:#00cc88;}
-.update{text-align:center;margin-top:25px;font-size:18px;color:#00ffae;font-weight:bold;}
-@media(max-width:600px){th,td{font-size:12px;padding:8px;} .timer{font-size:18px;} .match-date{font-size:14px;} .music-btn{width:50px;height:50px;font-size:20px;}}
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0; padding: 0;
+  background: #0e0e0e; color: #fff;
+  text-align: center;
+}
+h1, h2 { margin: 10px 0; }
+a { color: #00ffae; text-decoration: none; }
+
+.timer { font-size: 20px; margin-top: 5px; color: #00ffae; font-weight: bold; }
+.match-date { font-size: 16px; margin-top: 5px; color: #ccc; }
+
+table { width: 95%; margin: 15px auto; border-collapse: collapse; }
+th, td { border: 1px solid #444; padding: 10px; font-size: 14px; }
+th { background-color: #00ffae; color: #000; }
+tr:nth-child(even) { background-color: #1c1c1c; }
+tr:nth-child(odd) { background-color: #2a2a2a; }
+
+.music-btn {
+  position: fixed; bottom: 20px; right: 20px;
+  width: 60px; height: 60px;
+  background: #00ffae; border-radius: 50%;
+  border: none; font-size: 24px; color: #000;
+  cursor: pointer; display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+.music-btn:hover { background: #00cc88; }
+
+.music-panel {
+  display: none; position: fixed; bottom: 90px; right: 20px;
+  background: #1a1a1a; padding: 10px; border-radius: 10px;
+  box-shadow: 0 0 10px #00ffae; z-index: 1000;
+}
+.music-panel button {
+  display: block; width: 100%; padding: 8px; margin: 5px 0;
+  background: #00ffae; border: none; color: #000;
+  font-weight: bold; border-radius: 5px; cursor: pointer;
+}
+.music-panel button:hover { background: #00cc88; }
+
+.creator { margin-top: 30px; font-size: 14px; color: #999; }
+.creator span { display: block; font-weight: bold; color: #00ffae; }
+
+footer {
+  margin-top: 20px; background: #111; padding: 10px;
+  font-size: 14px; display: flex; flex-direction: column; align-items: center;
+}
+.contact-icons a { margin: 0 10px; font-size: 24px; color: #00ffae; }
+.contact-icons a:hover { color: #00cc88; }
+
+.popup-bg {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85); justify-content: center; align-items: center;
+  z-index: 1000;
+}
+.popup {
+  background: #1a1a1a; padding: 20px; border-radius: 10px;
+  width: 90%; max-width: 350px; text-align: left;
+}
+.popup h3 { color: #00ffae; margin-bottom: 10px; }
+.popup a { display: block; margin: 5px 0; color: #00ffae; }
+.popup button {
+  margin-top: 10px; padding: 8px 12px; background: #00ffae;
+  border: none; color: #000; font-weight: bold;
+  cursor: pointer; border-radius: 5px;
+}
+.popup button:hover { background: #00cc88; }
+
+.update {
+  text-align: center; margin-top: 25px;
+  font-size: 18px; color: #ff4444; font-weight: bold;
+  background: #1a1a1a; padding: 10px; border-radius: 5px;
+  width: fit-content; margin-left: auto; margin-right: auto;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+/* leaderboard style */
+.leaderboard { width: 90%; margin: 20px auto; }
+.leaderboard th {
+  background: #00ffae;
+  color: #000;
+}
+.leaderboard td { text-align: center; color: #fff; }
+
+/* Notification box */
+#notification {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1a1a1a;
+  border: 2px solid #00ffae;
+  box-shadow: 0 0 20px #00ffae;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 2000;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+#notification h3 {
+  color: #00ffae;
+  margin-bottom: 10px;
+}
+#notification p {
+  color: #ccc;
+}
+#notification button {
+  margin-top: 15px;
+  background: #00ffae;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#notification button:hover { background: #00cc88; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@media(max-width:600px){
+  th,td{font-size:12px;padding:8px;}
+  .timer{font-size:18px;}
+  .match-date{font-size:14px;}
+  .music-btn{width:50px;height:50px;font-size:20px;}
+}
 </style>
 </head>
 <body>
 
 <h1>🔥 FF CS Mini Tournament 🔥</h1>
 <div class="match-date">Match Date: 7 November 2025, 04:00 PM BST</div>
-<div class="timer" id="timer">Loading...</div>
+<div class="timer" id="timer">🏁 Match Finished!</div>
 
 <h2>👥 Teams</h2>
 <table>
@@ -50,32 +155,33 @@ footer{margin-top:20px;background:#111;padding:10px;font-size:14px;display:flex;
 <tr><td>Team 3</td><td>Mahadi, Infinity</td><td><button onclick="showPopup('team3')">View</button></td></tr>
 </table>
 
-<h2>📅 Match Schedule</h2>
+<h2>📅 Match Results</h2>
 <table>
 <tr><th>Match</th><th>Competitors</th><th>Result</th></tr>
-<tr><td>Match 1</td><td>Team 1 vs Team 2</td><td>❓</td></tr>
-<tr><td>Match 2</td><td>Team 2 vs Team 3</td><td>❓</td></tr>
-<tr><td>Match 3</td><td>Team 1 vs Team 3</td><td>❓</td></tr>
+<tr><td>Match 1</td><td>Team 1 vs Team 2</td><td>🚫</td></tr>
+<tr><td>Match 2</td><td>Team 2 vs Team 3</td><td>🚫</td></tr>
+<tr><td>Match 3</td><td>Team 1 vs Team 3</td><td>🏆 Team 3</td></tr>
 </table>
 
-<h2>🏆 Scoreboard</h2>
-<table>
-<tr><th>Team</th><th>Matches Played</th><th>Wins</th><th>Losses</th><th>Points</th></tr>
-<tr><td>Team 1</td><td>2</td><td>❓</td><td>❓</td><td>❓</td></tr>
-<tr><td>Team 2</td><td>2</td><td>❓</td><td>❓</td><td>❓</td></tr>
-<tr><td>Team 3</td><td>2</td><td>❓</td><td>❓</td><td>❓</td></tr>
+<h2>🏆 Leaderboard</h2>
+<table class="leaderboard">
+<tr><th>Rank</th><th>Player</th><th>Matches Won</th><th>Kills</th><th>Points</th></tr>
+<tr><td>1st 🥇</td><td>Mahadi</td><td>1</td><td>7</td><td>7</td></tr>
+<tr><td>2nd 🥈</td><td>Infinity</td><td>1</td><td>5</td><td>5</td></tr>
+<tr><td>3rd 🥉</td><td>Shawn</td><td>0</td><td>3</td><td>3</td></tr>
+<tr><td>4th</td><td>Others</td><td>0</td><td>0</td><td>0</td></tr>
 </table>
 
-<div class="update">⚙️ UPDATE COMING SOON...</div>
+<div class="update">⚠️ Eamin Arafat has left the team.<br>💬Team 2 has been banned from this tournament.</div>
 
 <div class="creator"><span>Creator</span>@Eamin Arafat</div>
 
 <footer>
-<div>Contact:</div>
-<div class="contact-icons">
-<a href="https://www.tiktok.com/@takemichi_edit9" target="_blank">TikTok</a>
-<a href="https://www.facebook.com/share/1AC3Q2gC3Y/" target="_blank">Facebook</a>
-</div>
+  <div>Contact:</div>
+  <div class="contact-icons">
+    <a href="https://www.tiktok.com/@takemichi_edit9" target="_blank">TikTok</a>
+    <a href="https://www.facebook.com/share/1AC3Q2gC3Y/" target="_blank">Facebook</a>
+  </div>
 </footer>
 
 <button class="music-btn" onclick="toggleMusicPanel()">🎵</button>
@@ -93,77 +199,73 @@ footer{margin-top:20px;background:#111;padding:10px;font-size:14px;display:flex;
   </div>
 </div>
 
-<!-- Auto music start -->
+<!-- Notification Box -->
+<div id="notification">
+  <h3>🏁 Tournament Finished</h3>
+  <p>All matches have been completed successfully.</p>
+  <p style="color:#ff4444;font-weight:bold;">Eamin Arafat has left the team.</p>
+  <button onclick="closeNotification()">OK</button>
+</div>
+
 <audio id="audioPlayer" autoplay loop>
   <source src="gan.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// ==========================
-// COUNTDOWN TIMER (Bangladesh Time)
-// ==========================
-function startTimer() {
-    // Match time: 7 Nov 2025, 16:00 (4:00 PM Bangladesh Time)
-    const matchTimeBD = new Date(2025, 10, 7, 16, 0, 0); // local Bangladesh time
-    const timerElement = document.getElementById("timer");
+// ===== Stylish Notification =====
+window.onload = () => {
+  const notif = document.getElementById("notification");
+  notif.style.display = "block";
+};
 
-    function updateTimer() {
-        const now = new Date();
-        const distance = matchTimeBD - now;
-
-        if(distance <= 0){
-            timerElement.innerHTML = "Match Started!";
-            clearInterval(timerInterval);
-            return;
-        }
-
-        const hours = Math.floor((distance / (1000*60*60)));
-        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-        const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-        timerElement.innerHTML = `Starts in: ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateTimer();
-    const timerInterval = setInterval(updateTimer,1000);
+// ===== Close Notification =====
+function closeNotification(){
+  document.getElementById("notification").style.display = "none";
 }
-startTimer();
 
-// ==========================
-// MUSIC PLAYER
-// ==========================
+// ===== MUSIC =====
 const audioPlayer = document.getElementById("audioPlayer");
-function playMusic(file){audioPlayer.src=file;audioPlayer.play();}
-function pauseMusic(){audioPlayer.pause();}
+function playMusic(file){
+  audioPlayer.src = file;
+  audioPlayer.play().catch(err => console.log("Audio blocked:", err));
+}
+function pauseMusic(){ audioPlayer.pause(); }
 function toggleMusicPanel(){
   const panel = document.getElementById("musicPanel");
-  panel.style.display = (panel.style.display==="block")?"none":"block";
+  panel.style.display = (panel.style.display === "block") ? "none" : "block";
 }
 
-// ==========================
-// PLAYER FB POPUP
-// ==========================
+// ===== PLAYER FB POPUP =====
 const playerData = {
-    "team1":[{name:"Shawn",fb:"https://www.facebook.com/share/17qGFYyJD2/"},{name:"Eamin",fb:"https://www.facebook.com/share/1BeEqEAkNZ/"}],
-    "team2":[{name:"Dynamic",fb:"https://www.facebook.com/mirza.a.s.501593"},{name:"Md. Jihad",fb:"https://www.facebook.com/mohammod.jihad.hosain"}],
-    "team3":[{name:"Mahadi",fb:"https://www.facebook.com/mdmahadi.mahadi.739978"},{name:"Infinity",fb:"https://www.facebook.com/hyalo.kasta.973170"}]
+  "team1":[
+    {name:"Shawn",fb:"https://www.facebook.com/share/17qGFYyJD2/"},
+    {name:"Eamin",fb:"https://www.facebook.com/share/1BeEqEAkNZ/"}
+  ],
+  "team2":[
+    {name:"Dynamic",fb:"https://www.facebook.com/mirza.a.s.501593"},
+    {name:"Md. Jihad",fb:"https://www.facebook.com/mohammod.jihad.hosain"}
+  ],
+  "team3":[
+    {name:"Mahadi",fb:"https://www.facebook.com/mdmahadi.mahadi.739978"},
+    {name:"Infinity",fb:"https://www.facebook.com/hyalo.kasta.973170"}
+  ]
 };
 
 function showPopup(team){
-    const popup=document.getElementById("popup");
-    const content=document.getElementById("popupContent");
-    content.innerHTML="";
-    playerData[team].forEach(player=>{
-        const link=document.createElement("a");
-        link.href=player.fb;
-        link.target="_blank";
-        link.textContent=player.name;
-        content.appendChild(link);
-    });
-    popup.style.display="flex";
+  const popup = document.getElementById("popup");
+  const content = document.getElementById("popupContent");
+  content.innerHTML = "";
+  playerData[team].forEach(player=>{
+    const link=document.createElement("a");
+    link.href=player.fb;
+    link.target="_blank";
+    link.textContent=player.name;
+    content.appendChild(link);
+  });
+  popup.style.display="flex";
 }
-
-function closePopup(){document.getElementById("popup").style.display="none";}
+function closePopup(){ document.getElementById("popup").style.display="none"; }
 </script>
+
 </body>
 </html>
